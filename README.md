@@ -65,3 +65,46 @@ Une fois le build terminé, tu peux accéder à :
 ⚙️ Backend API : http://localhost:3000
 🧠 Redis : redis-cli -h localhost -p 6379
 🐳 Docker se charge de tout lancer automatiquement — aucun setup manuel requis.
+
+## 🤖 Créer son propre bot Telegram avec BotFather
+
+Pour faire tourner ce projet, tu dois créer ton propre bot sur Telegram et obtenir un **token d’accès**.
+
+---
+
+### 1️⃣ Ouvrir BotFather
+
+1. Ouvre Telegram et cherche **@BotFather** (c’est le bot officiel de Telegram).  
+2. Clique sur **Start** ou tape `/start`.
+
+---
+
+### 2️⃣ Créer un nouveau bot
+
+Envoie la commande :
+
+```bash
+/newbot
+```
+BotFather te demandera :
+
+Un nom complet → (ex: Clicker Game Bot)
+Un nom d’utilisateur unique qui se termine par bot → (ex: clicker_game_bot)
+Il te répondra avec un message comme :
+```bash
+Done! Congratulations on your new bot.
+You can now find it at t.me/clicker_game_bot
+Use this token to access the HTTP API:
+123456789:ABCdefGhijkLMNOPqrsTUVwxyz
+```
+Copie bien ce token 👇
+🔐 Ne le partage jamais publiquement !
+
+## ⚙️ Configurer ton .env
+
+Dans ton projet, édite ou crée le fichier .env :
+```bash
+BOT_TOKEN=123456789:ABCdefGhijkLMNOPqrsTUVwxyz
+REDIS_URL=redis://redis:6379
+```
+💡 Le token permet à ton bot de se connecter à Telegram via l’API officielle.
