@@ -108,3 +108,57 @@ BOT_TOKEN=123456789:ABCdefGhijkLMNOPqrsTUVwxyz
 REDIS_URL=redis://redis:6379
 ```
 💡 Le token permet à ton bot de se connecter à Telegram via l’API officielle.
+
+### 🌍 Accéder à la WebApp
+
+Par défaut, elle est disponible sur :
+```
+http://localhost:5173
+```
+Si tu veux la rendre accessible à Telegram (pour la mini-app), utilise **ngrok** :
+
+```bash
+ngrok http 5173
+```
+Ngrok te donnera une URL publique du type :
+```
+https://xxxxx.ngrok-free.app
+```
+🧩 Copie cette URL et remplace-la dans ton bot (index.js) :
+```js
+reply_markup: {
+  inline_keyboard: [
+    [
+      {
+        text: "🔥 Ouvrir le Clicker",
+        web_app: { url: "https://xxxxx.ngrok-free.app" }, // remplace ici
+      },
+    ],
+  ],
+},
+```
+🧠 Utiliser ton propre serveur Ngrok (optionnel)
+
+Si tu possèdes un compte premium ngrok ou ton propre domaine tunnel,
+tu peux directement remplacer l’URL dans ton code par ton endpoint personnel :
+```js
+web_app: { url: "https://ton-serveur-ngrok.io" },
+```
+Cela permet :
+
+D’éviter les limites de connexion des tunnels gratuits ;
+
+De garder ton lien permanent même après redémarrage ;
+
+D’améliorer la stabilité lors de tests à plusieurs.
+
+🧹 Arrêter tous les services
+
+Quand tu veux arrêter ton projet proprement :
+```bash
+docker compose down
+```
+Et pour tout réinitialiser (y compris les données Redis) :
+```bash
+docker compose down -v
+```
