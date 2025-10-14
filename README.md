@@ -40,3 +40,28 @@ Chaque utilisateur peut cliquer pour augmenter son score, voir son classement gl
 ```bash
 git clone https://github.com/jerem0010/telegram-clicker-bot.git
 cd telegram-clicker-bot
+```
+### 2️⃣ Créer un fichier `.env`
+
+Crée un fichier `.env` à la racine du projet (ou copie depuis `.env.example`) :
+
+```bash
+BOT_TOKEN=ton_token_telegram
+REDIS_URL=redis://redis:6379
+```
+💡 Le BOT_TOKEN est fourni par @BotFather sur Telegram.
+REDIS_URL indique au bot l’adresse de la base Redis (ici celle du conteneur Docker).
+
+### 3️⃣ Lancer avec Docker
+
+Démarre toute l’infrastructure (bot + backend + webapp + Redis) :
+
+```bash
+docker compose up --build
+```
+Une fois le build terminé, tu peux accéder à :
+
+🌐 WebApp : http://localhost:5173
+⚙️ Backend API : http://localhost:3000
+🧠 Redis : redis-cli -h localhost -p 6379
+🐳 Docker se charge de tout lancer automatiquement — aucun setup manuel requis.
