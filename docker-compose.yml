@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  bot:
+    build: ./bot
+    depends_on:
+      - redis
+      - backend
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - REDIS_URL=redis://redis:6379
+      - FRONT_URL=http://webapp:80
+
+  backend:
+    build: ./backend
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "3000:3000"
+
+  webapp:
+    build: ./webapp
+    ports:
+      - "5173:80"
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
